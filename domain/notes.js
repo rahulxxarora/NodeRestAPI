@@ -13,6 +13,18 @@ exports.createNote = function(noteData) {
         noteData.completeInfo = noteData.title + " -> " + noteData.body;
 
         notesDB.saveNote(noteData)
+            .then(noteId => {
+                resolve(noteId);
+            })
+            .catch(err => {
+                reject(err);
+            })
+    });
+};
+
+exports.fetchNote = function(id) {
+    return new Promise(function(resolve, reject) {
+        notesDB.fetchNote(id)
             .then(note => {
                 resolve(note);
             })

@@ -19,11 +19,28 @@ exports.saveNote = function(noteData) {
         note.save()
             .then(note => {
                 console.log("Note saved!");
-                resolve(note);
+                resolve(note._id);
             })
             .catch(err => {
                 console.log("Error saving note: " + err);
                 reject(err);
             })
+    })
+}
+
+exports.fetchNote = function(id) {
+    return new Promise(function(resolve, reject) {
+        Note.find({
+            '_id': id
+        }, function(err, result) {
+            if (err) {
+                console.log("Error in fetching data");
+                reject(err);
+            }
+            if (result) {
+                console.log("Data fetched successfully");
+                resolve(result);
+            } 
+        })        
     })
 }
