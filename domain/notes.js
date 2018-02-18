@@ -9,9 +9,7 @@ exports.createNote = function(noteData) {
             reject('Missing fields');
             return;
         }
-
-        noteData.completeInfo = noteData.title + " -> " + noteData.body;
-
+        
         notesDB.saveNote(noteData)
             .then(noteId => {
                 resolve(noteId);
