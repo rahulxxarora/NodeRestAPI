@@ -20,6 +20,17 @@ exports.fetchNote = function (req, res, next) {
             res.send(note)
         })
         .catch(err => {
-            res.status(400).send(err);
+            res.status(400).send("Could not fetch a note by the given id");
+        })
+}
+
+exports.deleteNote = function (req, res, next) {
+    let id = req.params.id;
+    notesDomain.deleteNote(id)
+        .then(note => {
+            res.send(note)
+        })
+        .catch(err => {
+            res.status(400).send("Could not delete a note by the given id");
         })
 }

@@ -41,3 +41,17 @@ exports.fetchNote = function(id) {
             })       
     })
 }
+
+exports.deleteNote = function(id) {
+    return new Promise(function(resolve, reject) {
+        Note.findOneAndRemove({'_id': id})
+            .then(noteData => {
+                console.log("Data deleted successfully");
+                resolve("Data deleted successfully");
+            })
+            .catch(err => {
+                console.log("Error in fetching data");
+                reject(err);
+            })       
+    })
+}

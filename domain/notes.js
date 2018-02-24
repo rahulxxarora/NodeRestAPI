@@ -31,3 +31,15 @@ exports.fetchNote = function(id) {
             })
     });
 };
+
+exports.deleteNote = function(id) {
+    return new Promise(function(resolve, reject) {
+        notesDB.deleteNote(id)
+            .then(note => {
+                resolve(note);
+            })
+            .catch(err => {
+                reject(err);
+            })
+    });
+};
